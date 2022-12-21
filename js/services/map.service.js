@@ -5,8 +5,8 @@ export const mapService = {
 }
 
 
-
 // Var that is used throughout this Module (not global)
+let gMarker
 var gMap
 
 function initMap(lat = 32.0749831, lng = 34.9120554) {
@@ -17,22 +17,13 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
             gMap = new google.maps.Map(
                 document.querySelector('#map'), {
                 center: { lat, lng },
-                zoom: 15
-            })
+                zoom: 15,
+                
+                })
+          
+            addMarker({ lat: lat, lng: lng })
             gMap.addListener('click', (googleMapsEvent) => {
-
-                const newLoc = {
-                    // id: makeId(),
-                    lng: googleMapsEvent.latLng.lng(),
-                    lat: googleMapsEvent.latLng.lat(),
-                    // locName,
-                    time: new Date()
-
-                }
-                // initMap(newLoc.lat,newLoc.lng)
-                addMarker({ lat: newLoc.lat, lng: newLoc.lng })
-                panTo(newLoc.lat,newLoc.lng)
-                console.log('new', newLoc)
+                mapClick(googleMapsEvent, gMap)
             })
 
             console.log('Map!', gMap)
@@ -40,13 +31,17 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
 }
 
 function addMarker(loc) {
+    if(gMarker) gMarker.setMap(null)
     var marker = new google.maps.Marker({
         position: loc,
         map: gMap,
         title: 'Hello World!'
     })
     console.log(marker.position)
+    gMarker = marker
     return marker
+  
+      
 }
 
 function panTo(lat, lng) {
@@ -67,5 +62,20 @@ function _connectGoogleApi() {
         elGoogleApi.onload = resolve
         elGoogleApi.onerror = () => reject('Google script failed to load')
     })
+}
+
+function mapClick(googleMapsEvent, map) {
+    const newLoc = {
+        // id: makeId(),
+        lng: googleMapsEvent.latLng.lng(),
+        lat: googleMapsEvent.latLng.lat(),
+        // locName,
+        time: new Date()
+
+    }
+   
+    addMarker({ lat: newLoc.lat, lng: newLoc.lng })
+    panTo(newLoc.lat, newLoc.lng)
+    console.log('new', newLoc)
 }
 
