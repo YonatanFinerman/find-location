@@ -7,6 +7,7 @@ window.onPanTo = onPanTo
 window.onGetLocs = onGetLocs
 window.onGetUserPos = onGetUserPos
 window.onSaveLocation = onSaveLocation
+window.onGo = onGo
 
 function onInit() {
     mapService.initMap()
@@ -14,7 +15,10 @@ function onInit() {
             console.log('Map is ready')
         })
         .catch(() => console.log('Error: cannot init map'))
-    renderTable()
+        .finally(()=>{
+          
+            renderTable()
+        })
 }
 
 // This function provides a Promise API to the callback-based-api of getCurrentPosition
@@ -59,6 +63,19 @@ function onSaveLocation() {
 }
 
 function renderTable() {
+   var prmLocs =  locService.getLocs().then(res=>{
+    console.log('this is prm res', res[0])
+    var strHTML= ''
+     res[0].forEach((loc,idx)=>{
+       strHTML+= `<tr><td>location name: ${loc.name}</td>
+       <td>location lat: ${loc.lat}</td>
+       <td>location lng: ${loc.lng}</td>
+       <td><button onclick="onGo(${idx})" class="go-btn">move to</button></td>
+       <td><button onclick="onDelete(${loc.id})" class="delete-btn">delete</button></td></tr>\n`
+    })
+    document.querySelector('.tbody-cont').innerHTML=strHTML
+})
+   
 //     var elTable = document.querySelector('table')
 //     var x = mapService.getLocation().then(res =>{
 //         x = res
@@ -66,8 +83,8 @@ function renderTable() {
  }
  
 
-function onGo(id){
-    mapService.go(id)
+function onGo(idx){
+    mapService.go(idx)
 }
 
 function onDelete(id){

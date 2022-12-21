@@ -6,13 +6,14 @@ export const locService = {
     loadLocs,
     findLocById,
     removeLoc,
+    loadLocs
 }
 
 
 
 const LOCS_STORAGE_KEY = 'loCDB'
 
-loadLocs()
+// loadLocs()
 
 var locs = [
     { id: storageService.makeId(), name: 'Greatplace', lat: 32.047104, lng: 34.832384 },

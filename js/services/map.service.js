@@ -28,6 +28,7 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
                 })
           
             addMarker({ lat: lat, lng: lng })
+            locService.loadLocs()
             gMap.addListener('click', (googleMapsEvent) => {
                 mapClick(googleMapsEvent, gMap)
             })
@@ -97,10 +98,22 @@ function getLocation(){
 }
 
 
-function go(id){
- const loc =  locService.findLocById(id)
- console.log('loc is ',loc)
- const {lat,lng} = loc
- panTo(lat, lng)
- addMarker({lat,lng})
+function go(idx){
+    var locsPrm = locService.getLocs().then(res=>{
+        console.log(res)
+        var lat = res[0][idx].lat
+        var lng = res[0][idx].lng
+        console.log('lat is',lat)
+        console.log('lng is' , lng)
+         panTo(lat, lng)
+        addMarker({lat,lng})
+    })
+    
+//     locs = 
+//  const loc =  locService.findLocById(id)
+//  var lat = locs[idx].lat
+
+// //  console.log('loc is ',loc)
+// //  const {lat,lng} = loc
+
 }
