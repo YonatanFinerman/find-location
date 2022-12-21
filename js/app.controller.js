@@ -64,3 +64,12 @@ function renderTable() {
 //         x = res
 //     })
  }
+
+function onGo(id){
+    mapService.go(id)
+}
+
+function onDelete(id){
+    locService.removeLoc(id)
+}
+

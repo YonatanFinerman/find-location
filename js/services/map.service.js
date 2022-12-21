@@ -5,7 +5,8 @@ export const mapService = {
     addMarker,
     panTo,
     saveLocation,
-    getLocation
+    getLocation,
+    go,
 }
 
 // Var that is used throughout this Module (not global)
@@ -90,6 +91,15 @@ function saveLocation(){
     locService.addLocation(gCurrPosition)
 }
 
+
 function getLocation(){
     return locService.loadLocs()
+}
+
+function go(id){
+ const loc =  locService.findLocById(id)
+ console.log('loc is ',loc)
+ const {lat,lng} = loc
+ panTo(lat, lng)
+ addMarker({lat,lng})
 }
