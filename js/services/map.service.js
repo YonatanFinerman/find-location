@@ -19,6 +19,22 @@ function initMap(lat = 32.0749831, lng = 34.9120554) {
                 center: { lat, lng },
                 zoom: 15
             })
+            gMap.addListener('click', (googleMapsEvent) => {
+
+                const newLoc = {
+                    // id: makeId(),
+                    lng: googleMapsEvent.latLng.lng(),
+                    lat: googleMapsEvent.latLng.lat(),
+                    // locName,
+                    time: new Date()
+
+                }
+                // initMap(newLoc.lat,newLoc.lng)
+                addMarker({ lat: newLoc.lat, lng: newLoc.lng })
+                panTo(newLoc.lat,newLoc.lng)
+                console.log('new', newLoc)
+            })
+
             console.log('Map!', gMap)
         })
 }
@@ -29,6 +45,7 @@ function addMarker(loc) {
         map: gMap,
         title: 'Hello World!'
     })
+    console.log(marker.position)
     return marker
 }
 
@@ -40,7 +57,7 @@ function panTo(lat, lng) {
 
 function _connectGoogleApi() {
     if (window.google) return Promise.resolve()
-    const API_KEY =  'AIzaSyDaRU8dfDmfYH7VAnKLLM7Y2SXli9AH33Q' 
+    const API_KEY = 'AIzaSyDaRU8dfDmfYH7VAnKLLM7Y2SXli9AH33Q'
     var elGoogleApi = document.createElement('script')
     elGoogleApi.src = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}`
     elGoogleApi.async = true
@@ -51,3 +68,4 @@ function _connectGoogleApi() {
         elGoogleApi.onerror = () => reject('Google script failed to load')
     })
 }
+
