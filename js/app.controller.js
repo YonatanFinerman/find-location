@@ -57,6 +57,25 @@ function onSaveLocation(){
     mapService.saveLocation()
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function onGo(id){
     mapService.go(id)
 }
