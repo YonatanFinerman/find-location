@@ -5,6 +5,7 @@ export const mapService = {
     addMarker,
     panTo,
     saveLocation,
+    getLocation
 }
 
 // Var that is used throughout this Module (not global)
@@ -87,4 +88,8 @@ function mapClick(googleMapsEvent, map) {
 
 function saveLocation(){
     locService.addLocation(gCurrPosition)
+}
+
+function getLocation(){
+    return locService.loadLocs()
 }

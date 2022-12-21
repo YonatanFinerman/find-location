@@ -14,6 +14,7 @@ function onInit() {
             console.log('Map is ready')
         })
         .catch(() => console.log('Error: cannot init map'))
+    renderTable()
 }
 
 // This function provides a Promise API to the callback-based-api of getCurrentPosition
@@ -53,7 +54,13 @@ function onPanTo() {
     mapService.panTo(35.6895, 139.6917)
 }
 
-function onSaveLocation(){
+function onSaveLocation() {
     mapService.saveLocation()
 }
 
+function renderTable() {
+//     var elTable = document.querySelector('table')
+//     var x = mapService.getLocation().then(res =>{
+//         x = res
+//     })
+ }
