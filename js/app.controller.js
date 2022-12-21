@@ -57,3 +57,11 @@ function onSaveLocation(){
     mapService.saveLocation()
 }
 
+function onGo(id){
+    mapService.go(id)
+}
+
+function onDelete(id){
+    locService.removeLoc(id)
+}
+

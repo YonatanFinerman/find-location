@@ -2,7 +2,9 @@ import { storageService } from "./async.storage.service.js"
 
 export const locService = {
     getLocs,
-    addLocation
+    addLocation,
+    findLocById,
+    removeLoc,
 }
 
 
@@ -15,6 +17,10 @@ var locs = [
     { id: storageService.makeId(), name: 'Greatplace', lat: 32.047104, lng: 34.832384 },
     { id: storageService.makeId(), name: 'Neveragain', lat: 32.047201, lng: 34.832581 }
 ]
+
+function findLocById(id) {
+  return  locs.find(loc => loc.id === id)
+}
 
 function loadLocs() {
 
@@ -66,5 +72,10 @@ function getLocName(pos) {
     // console.log('name of location is', posNamePrm)
     return axios.get(urlName).then(res => res.data.plus_code)
     //    var posNamePrm = axios.get(urlName).then(console.log)
+}
+
+function removeLoc(id){
+    storageService.remove(LOCS_STORAGE_KEY,id)
+    // const loc = findLocById(id)
 }
 
