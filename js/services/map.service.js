@@ -1,4 +1,4 @@
-// import { locService } from './services/loc.service.js'
+import {locService} from './loc.service.js'
 
 export const mapService = {
     initMap,
@@ -7,11 +7,11 @@ export const mapService = {
     saveLocation,
 }
 
-
-
 // Var that is used throughout this Module (not global)
+let gCurrPosition
 let gMarker
 var gMap
+
 
 function initMap(lat = 32.0749831, lng = 34.9120554) {
     console.log('InitMap')
@@ -43,6 +43,7 @@ function addMarker(loc) {
     })
     console.log(marker.position)
     gMarker = marker
+    gCurrPosition = loc
     return marker
   
       
@@ -68,6 +69,7 @@ function _connectGoogleApi() {
     })
 }
 
+
 function mapClick(googleMapsEvent, map) {
     const newLoc = {
         // id: makeId(),
@@ -84,5 +86,5 @@ function mapClick(googleMapsEvent, map) {
 }
 
 function saveLocation(){
-    addLocation()
+    locService.addLocation(gCurrPosition)
 }

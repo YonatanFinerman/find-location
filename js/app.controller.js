@@ -56,3 +56,4 @@ function onPanTo() {
 function onSaveLocation(){
     mapService.saveLocation()
 }
+
