@@ -1,8 +1,12 @@
+// import { locService } from './services/loc.service.js'
+
 export const mapService = {
     initMap,
     addMarker,
-    panTo
+    panTo,
+    saveLocation,
 }
+
 
 
 // Var that is used throughout this Module (not global)
@@ -79,3 +83,6 @@ function mapClick(googleMapsEvent, map) {
     console.log('new', newLoc)
 }
 
+function saveLocation(){
+    addLocation()
+}

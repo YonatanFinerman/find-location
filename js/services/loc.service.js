@@ -2,6 +2,7 @@ export const locService = {
     getLocs
 }
 
+const LOCS_STORAGE_KEY = 'loCDB'
 
 const locs = [
     { name: 'Greatplace', lat: 32.047104, lng: 34.832384 }, 
