@@ -58,6 +58,25 @@ function onSaveLocation() {
     mapService.saveLocation()
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function renderTable() {
 //     var elTable = document.querySelector('table')
 //     var x = mapService.getLocation().then(res =>{

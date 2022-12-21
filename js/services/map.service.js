@@ -96,6 +96,30 @@ function getLocation(){
     return locService.loadLocs()
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function go(id){
  const loc =  locService.findLocById(id)
  console.log('loc is ',loc)

@@ -75,6 +75,29 @@ function getLocName(pos) {
     //    var posNamePrm = axios.get(urlName).then(console.log)
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function removeLoc(id){
     storageService.remove(LOCS_STORAGE_KEY,id)
     // const loc = findLocById(id)
